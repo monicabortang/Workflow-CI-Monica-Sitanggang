@@ -26,52 +26,7 @@ jobs:
     - name: Run MLflow Project
       run: |
         cd MLProject
-        mlflow run .  # Hapus --no-conda, biarkan seperti ini
-    
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: mlflow-artifacts
-        path: MLProject/mlruns/
-    
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_TOKEN }}
-    
-    - name: Build and push Docker image
-      run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/mlflow-model:latest .
-        docker push ${{ secrets.DOCKER_USERNAME }}/mlflow-model:latestname: MLflow Project CI
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
-jobs:
-  run-mlflow-project:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install mlflow scikit-learn pandas numpy
-    
-    - name: Run MLflow Project
-      run: |
-        cd MLProject
-        mlflow run .  # Hapus --no-conda, biarkan seperti ini
+        mlflow run .
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
