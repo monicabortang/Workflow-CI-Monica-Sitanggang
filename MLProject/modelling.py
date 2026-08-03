@@ -22,6 +22,13 @@ parser.add_argument('--n_estimators', type=int, default=100)
 parser.add_argument('--max_depth', type=int, default=10)
 args = parser.parse_args()
 
+# Cek file dataset
+if not os.path.exists('dataset_preprocessing.csv'):
+    print("❌ dataset_preprocessing.csv not found!")
+    print(f"📁 Current directory: {os.getcwd()}")
+    print(f"📁 Files in directory: {os.listdir('.')}")
+    exit(1)
+
 # Load data
 df = pd.read_csv('dataset_preprocessing.csv')
 X = df.iloc[:, :-1].values
