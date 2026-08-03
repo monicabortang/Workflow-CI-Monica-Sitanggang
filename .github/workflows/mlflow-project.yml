@@ -23,10 +23,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install mlflow scikit-learn pandas numpy
     
+    # BAGIAN INI DIUBAH (Tidak pakai mlflow run, langsung pakai python)
     - name: Run MLflow Project
       run: |
         cd MLProject
-        mlflow run .   # <--- Kembali ke perintah dasar ini
+        python modelling.py --n_estimators 100 --max_depth 10
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
