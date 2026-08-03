@@ -10,15 +10,17 @@ import mlflow
 import mlflow.sklearn
 import argparse
 import pickle
-
-parser = argparse.ArgumentParser()
-parser.add_argument('--n_estimators', type=int, default=100)
-parser.add_argument('--max_depth', type=int, default=10)
-args = parser.parse_args()
+import os
 
 print("="*60)
 print("🤖 MLProject - Iris Classification")
 print("="*60)
+
+# Parse arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--n_estimators', type=int, default=100)
+parser.add_argument('--max_depth', type=int, default=10)
+args = parser.parse_args()
 
 # Load data
 df = pd.read_csv('dataset_preprocessing.csv')
